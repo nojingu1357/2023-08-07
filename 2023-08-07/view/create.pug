@@ -1,0 +1,24 @@
+doctype html 
+html 
+    head
+        meta(charset="utf-8") 
+
+        body 
+            h1 
+                a(href="/main") Go to MainPage 
+            ol
+                each titles in topics
+                    li 
+                        - rid = encodeURIComponent(titles["@rid"])
+                        a(href="/main/"+rid)= titles.title
+            br
+            article 
+                form(action="/main/create" method="post") 
+                    p
+                        input(type="text" name="title" placeholder="title")
+                    p
+                        textarea(name="description", cols="50", rows="10" placeholder="description") 
+                    p
+                        input(type="text" name="author" placeholder="author")
+                    p 
+                        input(type="submit")

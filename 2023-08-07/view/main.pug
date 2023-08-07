@@ -1,0 +1,36 @@
+doctype html 
+html 
+    head
+        meta(charset="utf-8") 
+
+        body 
+            h1 
+                a(href="/main") This is MainPage 
+            ol
+                each titles in topics
+                    li 
+                        - rid = encodeURIComponent(titles["@rid"])
+                        a(href="/main/"+rid)= titles.title
+            br
+            article 
+                if topic 
+                    h2=topic.title
+                    =topic.description
+                    br
+                    - rid = encodeURIComponent(topic["@rid"])
+                    - const EditLink = "'/main/"+rid+"/edit'";
+                    - const DelLink = "'/main/"+rid+"/delete'";
+                    p
+                        button(type="button" onClick="location.href='/main/create'") Create 
+                    p
+                        button(type="button" onClick="location.href="+EditLink) Edit
+                    p
+                        button(type="button" onClick="location.href="+DelLink) Delete
+                
+                else
+                    h2="Welcom"
+                    ="This is main page"
+                    br
+                    button(type="button" onClick="location.href='/main/create'") Create
+           
+
